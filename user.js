@@ -4,7 +4,7 @@ const user = {
     status: "success",
     data: {
       name: "Nosa Roy Okunbor",
-      github: "royking01",
+      github: "@royking01",
       email: "royokunbor@gmail.com.com",
       mobile: 08155386242,
       twitter: "",
