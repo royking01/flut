@@ -1,3 +1,4 @@
+var bodyParser = require('body-parser');
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -6,13 +7,25 @@ const user = require("./user");
 const check = require("check-types");
 
 app.use(express.json());
+app.use(bodyParser.json())
 
 // app.use(validate)
 
 app.use(express.urlencoded({ extended: false }));
 
 //object containing my information
-
+app.use((err, req, res, next) => {
+  if (err) {
+    console.log('Invalid Request data')
+    res.json({
+      "message": "Invalid JSON payload passed.",
+      "status": "error",
+      "data": null
+    })
+  } else {
+    next()
+  }
+})
 // 1. Get request for user inforation
 app.get("/", (req, res) => res.json(user));
 
