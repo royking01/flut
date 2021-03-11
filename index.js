@@ -16,12 +16,12 @@ app.use(express.urlencoded({ extended: false }));
 //object containing my information
 app.use((err, req, res, next) => {
   if (err) {
-    console.log('Invalid Request data')
-    res.json({
+    // console.log('Invalid Request data')
+    res.status(400).json({
       "message": "Invalid JSON payload passed.",
       "status": "error",
       "data": null
-    }).status(400)
+    })
   } else {
     next()
   }
