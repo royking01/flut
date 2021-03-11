@@ -21,7 +21,7 @@ app.use((err, req, res, next) => {
       "message": "Invalid JSON payload passed.",
       "status": "error",
       "data": null
-    })
+    }).status(400)
   } else {
     next()
   }
