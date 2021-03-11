@@ -1,4 +1,4 @@
-var bodyParser = require('body-parser');
+// const bodyParser = require("body-parser");
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -7,7 +7,7 @@ const user = require("./user");
 const check = require("check-types");
 
 app.use(express.json());
-app.use(bodyParser.json())
+// app.use(bodyParser.json());
 
 // app.use(validate)
 
@@ -18,14 +18,14 @@ app.use((err, req, res, next) => {
   if (err) {
     // console.log('Invalid Request data')
     res.status(400).json({
-      "message": "Invalid JSON payload passed.",
-      "status": "error",
-      "data": null
-    })
+      message: "Invalid JSON payload passed.",
+      status: "error",
+      data: null,
+    });
   } else {
-    next()
+    next();
   }
-})
+});
 // 1. Get request for user inforation
 app.get("/", (req, res) => res.json(user));
 
@@ -35,12 +35,12 @@ app.post("/validate-rule", (req, res) => {
 
   // VALIDATE IF RULE DATA EXIST
   validate(req, res, rule, data);
-  res.send(data)
-  
-//COMPARE CONDITION,CONDITION VALUE AND DATA FIELD
-  // console.log("validate condition test");
+  res.send(data);
+
+  //COMPARE CONDITION,CONDITION VALUE AND DATA FIELD
   const re = compare(rule, data);
-  
+  // console.log("validate condition test");
+  console.log(re);
 }); //..
 
 const compare = (rule, data) => {
@@ -53,12 +53,9 @@ const compare = (rule, data) => {
     case "gt":
       return data[field] > condition_value;
     case "gte":
-      return data[field] >= condition_value
+      return data[field] >= condition_value;
   }
 };
-
-
-
 
 const PORT = process.env.PORT || 4000;
 
