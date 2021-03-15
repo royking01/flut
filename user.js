@@ -7,7 +7,7 @@ const user = {
       github: "@royking01",
       email: "royokunbor@gmail.com.com",
       mobile: 08155386242,
-      twitter: "",
+      twitter: "@code_cadet",
     },
   };
 

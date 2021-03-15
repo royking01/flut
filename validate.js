@@ -1,9 +1,12 @@
-const {wrongTypeError} = require("./helper/methods");
+const { wrongTypeError } = require("./helper/methods");
 const { PropertyToType } = require("./helper/constants");
 const { Property } = require("./helper/constants");
 const { isRequiredError } = require("./helper/methods");
 const { error } = require("./helper/methods");
 const check = require("check-types");
+const ruleField = require("./helper/ruleField");
+const compare = require("./helper/compare");
+
 const isCorrectType = (propertyType, property) =>
   PropertyToType[propertyType].includes(typeof property);
 
@@ -18,11 +21,9 @@ const validate = (req, res, rule, data) => {
   }
 
   isCorrectType(Property.Data, data);
-  // const { condition, condition_value, field } = rule;
-
   //VALIDATE RULE && DATA IS AN OBJECT
   if (!check.object(data)) {
-     console.log('not obj')
+    console.log("not obj");
     res.json(400, { mess: "data is not an object" });
   }
   if (!check.object(rule)) {
@@ -42,9 +43,15 @@ const validate = (req, res, rule, data) => {
       data: null,
     });
   } else {
-    res.json(data);
+    compare(res, rule, data);
+    // ruleField(res, rule, data);
+    ruleField(res, rule, data);
+
+  
+    // ruleField(res, rule, data);
+    console.log("í");
+    // res.json(data);
   }
-  // next();
   return
 };
 

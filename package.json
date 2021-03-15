@@ -11,6 +11,7 @@
   "author": "Roy Okunbor",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "check-types": "^11.1.2",
     "express": "^4.17.1",
     "nodemon": "^2.0.7"
